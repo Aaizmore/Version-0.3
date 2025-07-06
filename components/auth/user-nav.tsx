@@ -71,29 +71,29 @@ export function UserNav({ user }: UserNavProps) {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-56 professional-card" align="end" forceMount>
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
-            {displayName && <p className="font-medium">{displayName}</p>}
-            <p className="w-[200px] truncate text-sm text-muted-foreground">{user.email}</p>
+            {displayName && <p className="font-medium text-gray-900">{displayName}</p>}
+            <p className="w-[200px] truncate text-sm text-gray-600">{user.email}</p>
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => router.push("/write")}>
-          <PenTool className="mr-2 h-4 w-4" />
+        <DropdownMenuItem onClick={() => router.push("/write")} className="hover:bg-brand-50">
+          <PenTool className="mr-2 h-4 w-4 text-brand-600" />
           Write Post
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push("/profile")}>
-          <User className="mr-2 h-4 w-4" />
+        <DropdownMenuItem onClick={() => router.push("/profile")} className="hover:bg-brand-50">
+          <User className="mr-2 h-4 w-4 text-brand-600" />
           Profile
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push("/profile/edit")}>
-          <Settings className="mr-2 h-4 w-4" />
+        <DropdownMenuItem onClick={() => router.push("/profile/edit")} className="hover:bg-brand-50">
+          <Settings className="mr-2 h-4 w-4 text-brand-600" />
           Edit Profile
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleSignOut}>
-          <LogOut className="mr-2 h-4 w-4" />
+        <DropdownMenuItem onClick={handleSignOut} className="hover:bg-red-50">
+          <LogOut className="mr-2 h-4 w-4 text-red-600" />
           Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>

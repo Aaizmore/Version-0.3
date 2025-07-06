@@ -8,11 +8,12 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Lakambini XI | Archives",
-  description: "Share your thoughts, ideas, and stories on our archives platform.",
-  creator: "adrx.dev",
+  title: "Lakambini XI Archives | Professional Blog Platform",
+  description:
+    "A professional platform for Grade XI Lakambini students to share academic insights, experiences, and stories.",
+  creator: "Grade XI Lakambini",
   icons: {
-    icon: "/favicon.ico"
+    icon: "/favicon.ico",
   },
     generator: 'v0.dev'
 }
