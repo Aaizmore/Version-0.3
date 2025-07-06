@@ -193,11 +193,9 @@ export function PostForm({ post, isEditing = false }: PostFormProps) {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
-      <Card className="max-w-4xl mx-auto professional-card">
+      <Card className="max-w-4xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-xl sm:text-2xl text-gray-900">
-            {isEditing ? "Edit Post" : "Create New Post"}
-          </CardTitle>
+          <CardTitle className="text-xl sm:text-2xl">{isEditing ? "Edit Post" : "Create New Post"}</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -255,7 +253,7 @@ export function PostForm({ post, isEditing = false }: PostFormProps) {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button type="submit" disabled={isLoading} className="flex-1 sm:flex-none professional-button">
+              <Button type="submit" disabled={isLoading} className="flex-1 sm:flex-none">
                 <Save className="h-4 w-4 mr-2" />
                 {isLoading ? "Saving..." : isEditing ? "Update Post" : "Create Post"}
               </Button>

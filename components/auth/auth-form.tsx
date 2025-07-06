@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation"
 import { useToast } from "@/hooks/use-toast"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Mail, CheckCircle } from "lucide-react"
-import Image from "next/image"
 
 export function AuthForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -82,7 +81,7 @@ export function AuthForm() {
         // User is immediately signed in (email confirmation disabled)
         await ensureUserProfile(data.user)
         toast({
-          title: "Welcome to Lakambini XI Archives!",
+          title: "Welcome!",
           description: "Your account has been created successfully.",
         })
         router.push("/")
@@ -150,26 +149,26 @@ export function AuthForm() {
   if (showEmailSent) {
     return (
       <div className="flex items-center justify-center min-h-[80vh]">
-        <Card className="w-full max-w-md professional-card">
+        <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
               <Mail className="h-6 w-6 text-green-600" />
             </div>
-            <CardTitle className="text-gray-900">Check your email</CardTitle>
+            <CardTitle>Check your email</CardTitle>
             <CardDescription>
               We've sent a confirmation link to <strong>{userEmail}</strong>
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Alert className="border-green-200 bg-green-50">
-              <CheckCircle className="h-4 w-4 text-green-600" />
-              <AlertDescription className="text-green-800">
-                Click the link in your email to complete your registration and access Lakambini XI Archives.
+            <Alert>
+              <CheckCircle className="h-4 w-4" />
+              <AlertDescription>
+                Click the link in your email to complete your registration and sign in to your account.
               </AlertDescription>
             </Alert>
 
             <div className="text-center space-y-4">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Didn't receive the email? Check your spam folder or request a new one.
               </p>
 
@@ -197,19 +196,10 @@ export function AuthForm() {
 
   return (
     <div className="flex items-center justify-center min-h-[80vh]">
-      <Card className="w-full max-w-md professional-card">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <Image
-              src="/images/lakambini-logo.png"
-              alt="Lakambini XI Logo"
-              width={60}
-              height={60}
-              className="rounded-full ring-2 ring-brand-200"
-            />
-          </div>
-          <CardTitle className="text-2xl text-gray-900">Welcome to Lakambini XI Archives</CardTitle>
-          <CardDescription>Sign in to your account or create a new one to join our academic community.</CardDescription>
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Welcome to Lakambini 11 Archives</CardTitle>
+          <CardDescription>Sign in to your account or Create a new one.</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="signin" className="w-full">
@@ -242,7 +232,7 @@ export function AuthForm() {
                     autoComplete="current-password"
                   />
                 </div>
-                <Button type="submit" className="w-full professional-button" disabled={isLoading}>
+                <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? "Signing in..." : "Sign In"}
                 </Button>
               </form>
@@ -284,7 +274,7 @@ export function AuthForm() {
                     autoComplete="new-password"
                   />
                 </div>
-                <Button type="submit" className="w-full professional-button" disabled={isLoading}>
+                <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? "Creating account..." : "Sign Up"}
                 </Button>
               </form>

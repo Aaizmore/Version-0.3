@@ -1,9 +1,8 @@
 import { createClient } from "@/lib/supabase/server"
 import { PostCard } from "@/components/blog/post-card"
 import { Button } from "@/components/ui/button"
-import { PenTool, BookOpen, Users, Award } from "lucide-react"
+import { PenTool, BookOpen, Sparkles, Heart } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 import type { Post } from "@/lib/types"
 
 export default async function HomePage() {
@@ -32,52 +31,33 @@ export default async function HomePage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
         {/* Hero Section */}
         <div className="text-center mb-12 sm:mb-16">
-          <div className="flex items-center justify-center mb-8">
+          <div className="flex items-center justify-center mb-6 float-animation">
             <div className="relative">
-              <Image
-                src="/images/lakambini-logo.png"
-                alt="Lakambini XI Logo"
-                width={120}
-                height={120}
-                className="rounded-full shadow-lg ring-4 ring-brand-200"
-              />
-              <div className="absolute -top-2 -right-2 bg-brand-500 text-white rounded-full p-2">
-                <Award className="h-5 w-5" />
-              </div>
+              <BookOpen className="h-16 w-16 sm:h-20 sm:w-20 text-transparent bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text" />
+              <BookOpen className="absolute -top-2 -right-2 h-6 w-6 text-pink-400 animate-pulse" />
             </div>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 sm:mb-8">
-            <span className="text-gray-900">Grade XI</span>
-            <br />
-            <span className="professional-text">Lakambini Archives</span>
+            <span className="gradient-text">Lakambini XI Archives</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10">
-            A professional platform for Grade XI Lakambini students to share academic insights, experiences, and stories
-            that inspire our community.
+            A platform for sharing thoughts, ideas, and stories with
+            <Heart className="inline h-5 w-5 mx-1 text-pink-500" />
+            memories.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200">
-              <Users className="h-4 w-4 text-brand-500" />
-              <span className="text-sm font-medium text-gray-700">Student Community</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200">
-              <BookOpen className="h-4 w-4 text-brand-500" />
-              <span className="text-sm font-medium text-gray-700">Academic Excellence</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200">
-              <Award className="h-4 w-4 text-brand-500" />
-              <span className="text-sm font-medium text-gray-700">2025-2026</span>
-            </div>
-          </div>
-
           {user && (
-            <Button asChild size="lg" className="professional-button">
+            <Button
+              asChild
+              size="lg"
+              className="mb-8 bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
               <Link href="/write" className="flex items-center gap-2">
                 <PenTool className="h-5 w-5" />
-                Share Your Story
+                Write Your Story
+                <Sparkles className="h-4 w-4" />
               </Link>
             </Button>
           )}
@@ -86,12 +66,9 @@ export default async function HomePage() {
         {/* Posts Grid */}
         {posts && posts.length > 0 ? (
           <div className="space-y-8">
-            <div className="text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Latest Stories</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Discover insights, experiences, and academic achievements from our Lakambini XI community.
-              </p>
-            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-center">
+              <span className="gradient-text">Latest Stories</span>
+            </h2>
             <div className="grid gap-8 sm:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post: Post) => (
                 <PostCard key={post.id} post={post} />
@@ -101,27 +78,40 @@ export default async function HomePage() {
         ) : (
           <div className="text-center py-16 sm:py-24">
             <div className="relative mb-8">
-              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-brand-100 to-accent-100 rounded-full flex items-center justify-center">
-                <BookOpen className="h-16 w-16 text-brand-500" />
-              </div>
+              <BookOpen className="h-20 w-20 sm:h-28 sm:w-28 text-transparent bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text mx-auto float-animation" />
+              <Sparkles className="absolute top-0 right-1/2 transform translate-x-8 h-6 w-6 text-pink-400 animate-pulse" />
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">No stories yet</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+              <span className="gradient-text">No stories yet</span>
+            </h3>
 
             <p className="text-gray-600 text-base sm:text-lg mb-8 max-w-md mx-auto leading-relaxed">
-              Be the first to share your academic journey and inspire your fellow Lakambini students.
+              Be the first to share your story and inspire others with your thoughts and experiences.
             </p>
 
             {user ? (
-              <Button asChild size="lg" className="professional-button">
+              <Button
+                asChild
+                size="lg"
+                className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
                 <Link href="/write" className="flex items-center gap-2">
                   <PenTool className="h-5 w-5" />
                   Write First Story
+                  <Sparkles className="h-4 w-4" />
                 </Link>
               </Button>
             ) : (
-              <Button asChild size="lg" className="professional-button">
-                <Link href="/auth">Get Started</Link>
+              <Button
+                asChild
+                size="lg"
+                className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Link href="/auth" className="flex items-center gap-2">
+                  Get Started
+                  <Sparkles className="h-4 w-4" />
+                </Link>
               </Button>
             )}
           </div>
